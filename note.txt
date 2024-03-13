@@ -1,0 +1,56 @@
+// Install Package npm Back_End
+- npm init
+- npm i express sqlite3
+
+
+// Install Package npm Front_End
+- npm init
+- npm i express axios ejs
+
+
+// Create table database
+CREATE TABLE table_name (
+column1 datatype,
+column2 datatype,
+column3 datatype
+);
+
+// Ex-1
+db.run(`CREATE TABLE IF NOT EXISTS Books (
+Books_ID INTEGER PRIMARY KEY AUTOINCREMENT, (PK)
+Title TEXT,
+Author TEXT UNIQUE
+)`);
+
+
+db.run(`CREATE TABLE IF NOT EXISTS Sales (
+ID INTEGER PRIMARY KEY AUTOINCREMENT,
+Books_ID INTEGER (FK)
+
+>> Entity Table Sales table_name(PK)
+FOREIGN KEY (Books_ID) REFERENCES Books(Books_ID),
+)`);
+
+
+// Show Data Table Books
+db.all(`SELECT * FROM Books`)
+
+
+// Insert Data Table Books (Entity)
+db.run(`INSERT INTO Books (Title, Author, Price) VALUES (?, ?, ?)`,
+book.Title, book.Author, book.Price)
+
+
+
+// Delete Data Table Books
+db.run(`DELETE FROM Books WHERE Books_ID = ?`, req.params.Books_ID );
+
+
+// Post man Insert data table Books
+POST : http://localhost:3000/books
+
+{
+    "Title": "Fire places",
+    "Author": "Goya",
+    "Price": 150
+}
